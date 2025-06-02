@@ -1,35 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
-
-const PROJECT_DATA = {
-  frameworks: {
-    title: "JavaScript Frameworks",
-    description: "A responsive React + Vite e-commerce store using modern JS frameworks. This project demonstrates my ability to work with React components, routing, and dynamic product data.",
-    image: "/frameworks.png",
-    liveLink: "https://digishop-ecom-store.netlify.app/",
-    github: "https://github.com/IT-Dah/ecom-store",
-    reflection: "Improved accessibility, optimized images, and enhanced responsiveness across devices.",
-  },
-  semester: {
-    title: "Semester Project 2",
-    description: "A multi-page web application focusing on clean design and usability. This project demonstrates my approach to building accessible, user-friendly web apps using modern front-end tools.",
-    image: "/semester-placeholder.png",
-    liveLink: "",
-    github: "https://github.com/IT-Dah/SemesterProject2",
-    reflection: "Enhanced navigation and styling consistency, adjusted color contrast for accessibility.",
-  },
-  exam: {
-    title: "Exam Project 2: Holidaze",
-    description: "Holidaze is a booking site with user-friendly features and modern design. Built with accessibility, responsiveness, and clear user flows in mind.",
-    image: "/exam.png",
-    liveLink: "https://it-dah.github.io/holidaze/",
-    github: "https://github.com/IT-Dah/holidaze",
-    reflection: "Improved booking flow, accessibility, and UI bug fixes based on user testing.",
-  },
-};
+import PROJECTS from '../data/projects';
 
 export default function ProjectArticle() {
   const { id } = useParams();
-  const project = PROJECT_DATA[id];
+  const project = PROJECTS.find(p => p.id === id);
 
   if (!project) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -38,18 +12,24 @@ export default function ProjectArticle() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-blue-400 via-purple-300 to-pink-300 py-16 px-6">
+    <div className="min-h-screen bg-gradient-to-tr from-pink-100 via-purple-200 to-blue-200 py-16 px-6">
       <div className="max-w-3xl mx-auto bg-white/50 backdrop-blur-md rounded-3xl shadow-xl p-8 border border-blue-100">
-        <Link to="/" className="text-blue-700 underline hover:text-blue-900 transition mb-6 inline-block">&larr; Back to home</Link>
+        <Link
+          to="/"
+          className="inline-block mb-6 px-5 py-2 rounded-full bg-blue-300 text-blue-900 font-semibold shadow hover:bg-blue-400 transition"
+        >
+          ← Back to home
+        </Link>
         <h1 className="text-4xl font-extrabold text-blue-900 mb-6">{project.title}</h1>
-        <div className="w-full h-56 rounded-2xl overflow-hidden mb-8 border border-blue-50 shadow-lg bg-gradient-to-tr from-blue-100 via-white to-pink-100 flex items-center justify-center">
+        <div className="w-full h-72 rounded-2xl overflow-hidden mb-8 border border-blue-50 shadow-lg bg-gradient-to-tr from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center">
           <img
-            src={project.image}
+            src={project.articleImage}
             alt={`Screenshot of ${project.title}`}
-            className="max-h-52 object-contain"
+            className="w-full h-full object-cover object-top rounded-2xl"
+            loading="lazy"
           />
         </div>
-        <p className="mb-6 text-gray-800 leading-relaxed">{project.description}</p>
+        <p className="mb-6 text-gray-800 leading-relaxed">{project.description || project.shortDesc}</p>
         <div className="flex gap-6 mb-6">
           {project.liveLink ? (
             <a
@@ -74,9 +54,7 @@ export default function ProjectArticle() {
             GitHub Repo
           </a>
         </div>
-
         <hr className="my-8 border-blue-200" />
-
         <section>
           <h2 className="text-2xl font-semibold text-blue-800 mb-3">Reflections & Improvements</h2>
           <p className="text-gray-700 leading-relaxed">{project.reflection}</p>
