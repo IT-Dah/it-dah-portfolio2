@@ -1,15 +1,16 @@
-import { useParams, Link } from 'react-router-dom';
-import PROJECTS from '../data/projects';
+import { useParams, Link } from 'react-router-dom'
+import PROJECTS from '../data/projects'
+import { Home as HomeIcon } from 'lucide-react'
 
 export default function ProjectArticle() {
-  const { id } = useParams();
-  const project = PROJECTS.find(p => p.id === id);
+  const { id } = useParams()
+  const project = PROJECTS.find(p => p.id === id)
 
   if (!project) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <p className="text-lg text-red-500">Project not found.</p>
     </div>
-  );
+  )
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-pink-100 via-purple-200 to-blue-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 px-6">
@@ -17,9 +18,10 @@ export default function ProjectArticle() {
         <Link
           to="/"
           aria-label="Back to homepage"
-          className="inline-block mb-6 px-5 py-2 rounded-full bg-blue-300 dark:bg-blue-800 text-blue-900 dark:text-white font-semibold shadow hover:bg-blue-400 dark:hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+          className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full bg-blue-300 dark:bg-blue-800 text-blue-900 dark:text-white font-semibold shadow hover:bg-blue-400 dark:hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
         >
-          ← Back to home
+          <HomeIcon className="w-5 h-5" />
+          Back to home
         </Link>
         <h1 className="text-4xl font-extrabold text-blue-900 dark:text-white mb-6">{project.title}</h1>
         <div className="w-full h-72 rounded-2xl overflow-hidden mb-8 border border-blue-50 dark:border-gray-700 shadow-lg bg-gradient-to-tr from-pink-200 via-purple-200 to-blue-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 flex items-center justify-center">
@@ -64,5 +66,5 @@ export default function ProjectArticle() {
         </section>
       </div>
     </div>
-  );
+  )
 }
