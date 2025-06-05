@@ -4,10 +4,10 @@ export default function ProjectCard({ project }) {
   return (
     <Link
       to={project.articleLink}
-      className="flex flex-col bg-white rounded-3xl shadow-lg border border-transparent hover:border-blue-200 transition transform hover:scale-105 hover:shadow-2xl p-6"
+      className="flex flex-col bg-white dark:bg-gray-900 rounded-3xl shadow-lg border border-transparent hover:border-blue-200 dark:hover:border-blue-600 transition transform hover:scale-105 hover:shadow-2xl p-6"
       aria-label={`Open article page for ${project.title}`}
     >
-      <div className="w-full h-40 rounded-2xl overflow-hidden mb-6 bg-gradient-to-tr from-pink-200 via-purple-200 to-blue-200 flex items-center justify-center">
+      <div className="w-full h-40 rounded-2xl overflow-hidden mb-6 bg-gradient-to-tr from-pink-200 via-purple-200 to-blue-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 flex items-center justify-center">
         <img
           src={project.thumbnail}
           alt={`Thumbnail for ${project.title}`}
@@ -15,8 +15,8 @@ export default function ProjectCard({ project }) {
           loading="lazy"
         />
       </div>
-      <h2 className="font-semibold text-2xl text-gray-900 mb-3">{project.title}</h2>
-      <p className="text-gray-700 leading-relaxed">{project.shortDesc}</p>
+      <h2 className="font-semibold text-2xl text-gray-900 dark:text-white mb-3">{project.title}</h2>
+      <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{project.shortDesc}</p>
     </Link>
   );
 }
